@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+        <div class="search">
+        <input type="text" placeholder="Enter city name" spellcheck="false">
+        <button><img src="icons8-search-50 (1).png" ></button>
+        </div>
+        <div class="error"><p>Invalid city name</p></div>
+        <div class="weather">
+        <img src="6142570.png" alt class="weather-icon">
+        <h1 class="temp">22°C</h1>
+        <h2 class="city">New York</h2>
+        <div class="details">
+            <div class="col">
+                <img src="icons8-humidity-96.png">
+                <div><p class="humidity">50%</p><p>Humidity</p></div>
+                
+
+            </div>
+             <div class="col">
+                <img src="icons8-wind-48.png">
+                <div><p class="wind">15 km/hr</p> 
+                    <p>Wind Speed</p></div>
+               
+
+             </div>
+        </div>
+        
+    </div>
+    </div>
+    
+    
+</body>
+<script>
+    const apikey = "9bf2e74dbe6c39844f3543b9eeb1e2b4";
+    const apiurl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+    const searchbox=document.querySelector(".search input");
+    const searchbtn=document.querySelector(".search button");
+
+    async function checkweaather(city) {
+        const response = await fetch(apiurl + city+`&appid=${apikey}`);
+        if(response.status==404){
+            document.querySelector(".error").style.display="block";
+            document.querySelector(".weather").style.display="none";
+        }else{
+              
+                const data = await response.json(); 
+        console.log(data);
+        document.querySelector(".city").innerHTML=data.name;
+        document.querySelector(".temp").innerHTML=Math.round(data.main.temp)+"°C";
+        document.querySelector(".humidity").innerHTML=data.main.humidity+"%";
+        document.querySelector(".wind").innerHTML=data.wind.speed+" km/hr";
+        const weatherIcon=document.querySelector(".weather-icon");
+        
+
+if (data.weather[0].main === "Clouds") {
+    weatherIcon.src = "https://openweathermap.org/img/wn/02d@2x.png";
+} else if (data.weather[0].main === "Clear") {
+    weatherIcon.src = "https://openweathermap.org/img/wn/01d@2x.png";
+} else if (data.weather[0].main === "Rain") {
+    weatherIcon.src = "https://openweathermap.org/img/wn/10d@2x.png";
+} else if (data.weather[0].main === "Drizzle") {
+    weatherIcon.src = "https://openweathermap.org/img/wn/09d@2x.png";
+} else if (data.weather[0].main === "Thunderstorm") {
+    weatherIcon.src = "https://openweathermap.org/img/wn/11d@2x.png";
+} else if (data.weather[0].main === "Snow") {
+    weatherIcon.src = "https://openweathermap.org/img/wn/13d@2x.png";
+} else if (data.weather[0].main === "Mist") {
+    weatherIcon.src = "https://openweathermap.org/img/wn/50d@2x.png";
+} else if (data.weather[0].main === "Haze") {
+    weatherIcon.src = "https://openweathermap.org/img/wn/50d@2x.png";
+} else if (data.weather[0].main === "Fog") {
+    weatherIcon.src = "https://openweathermap.org/img/wn/50d@2x.png";
+} else if (data.weather[0].main === "Dust") {
+    weatherIcon.src = "https://openweathermap.org/img/wn/50d@2x.png";
+} else if (data.weather[0].main === "Smoke") {
+    weatherIcon.src = "https://openweathermap.org/img/wn/50d@2x.png";
+} else if (data.weather[0].main === "Sand") {
+    weatherIcon.src = "https://openweathermap.org/img/wn/50d@2x.png";
+}  else if (data.weather[0].main === "Tornado") {
+    weatherIcon.src = "https://openweathermap.org/img/wn/50d@2x.png";
+} 
+
+document.querySelector(".weather").style.display="block";
+document.querySelector(".error").style.display="none";
+
+        }
+    
+
+    }
+    searchbtn.addEventListener("click",()=>{
+      checkweaather(searchbox.value);
+    })
+
+    
+</script>
+
+</html>
