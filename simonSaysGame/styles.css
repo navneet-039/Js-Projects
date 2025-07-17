@@ -1,0 +1,51 @@
+body {
+    text-align: center;
+}
+
+.btn {
+    height: 100px;
+    width: 100px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 20%;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.buttoncontainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lineone {
+    text-align: center;
+}
+
+#red {
+    background-color: #d95980;
+}
+
+#yellow {
+    background-color: #f99b45;
+}
+
+#purple {
+    background-color: #63aac0;
+}
+
+#green {
+    background-color: #89ff89;
+}
+
+.flash {
+    background-color: white !important;  /* White background to highlight the button */
+    
+}
+
+.userflash {
+    background-color: yellow !important;  /* Flash effect for user-clicked button */
+   
+}
+
+
