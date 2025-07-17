@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="password-generator">
+        <div class="text">
+            <p id="text-1">Generate a</p>
+            <p id="text-2">Random Password</p>
+        </div>
+        <div class="input-field">
+            <input type="text" id="input"placeholder="password" >
+            <button class="copy-icon"><img src="icons8-copy-64.png" alt=""></button>
+             
+            
+        </div>
+        <div class="button">
+            <button id="btn">Generate Password</button>
+        </div>
+
+    </div>
+</body>
+<script>
+const copyButton = document.getElementsByClassName("copy-icon")[0];
+const generateButton = document.getElementById("btn");
+const input = document.getElementById("input");
+
+function generatepass(length = 12) {
+  let uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let lowercase = "abcdefghijklmnopqrstuvwxyz";
+  let specialcharacters = "!@#$%^&*()_+-=[]{}|;:',.<>/?`~";
+  const number="012345679";
+  let allchars = uppercase + lowercase + specialcharacters + number;
+  let password = "";
+
+  for (let i = 0; i < length; i++) {
+    let randomindex = Math.floor(Math.random() * allchars.length);
+    password += allchars[randomindex];
+  }
+
+  return password;
+}
+generateButton.addEventListener("click", () => {
+  input.value = generatepass();
+});
+copyButton.addEventListener("click", () => {
+  if (!input.value) return alert("Generate a password first!");
+  input.select();
+  document.execCommand("copy");
+//   input.setSelectionRange(0, 99999); 
+//   navigator.clipboard.writeText(input.value).then(() => {
+//     alert("Password copied to clipboard!");
+//   }).catch(() => {
+//     alert("Failed to copy. Please copy manually.");
+//   });
+});  
+</script>
+</html>
